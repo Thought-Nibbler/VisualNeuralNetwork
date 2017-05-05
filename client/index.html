@@ -18,15 +18,20 @@
         <script type="text/javascript" src="js/main.js"></script>
     </head>
     <body>
-        <canvas id="view" width="1000" height="400"></canvas>
-        <hr />
         <div id="ControlPanel">
             <div id="HiddenLayerCount">
                 <span>隠れ層の数 : </span>
                 <input type="number" value="4" min="1" max="8" />
             </div>
-            <div id="NeuronCount">
+        </div>
+        <hr />
+        <div id="ScrollPanel">
+            <div id="LayerSettingPanel">
+            </div>
+            <div id="NNViewerPanel">
+                <canvas id="view" width="1000" height="400"></canvas>
             </div>
         </div>
+        <hr />
     </body>
 </html>

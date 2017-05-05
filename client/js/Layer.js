@@ -110,12 +110,12 @@ VNN.Layer = class {
     }
 
     // 描画（入力層以外）
-    Draw(context, left, top, size) {
+    Draw(context, centerX, topY, size) {
         var margin = 5;
 
         if (!(this instanceof VNN.InputLayer)) {
-            let x = left - (size + margin);
-            let y = top + (size + margin);
+            let x = centerX - Math.floor(size / 2) - (size + margin);
+            let y = topY + (size + margin);
             let r = Math.floor(size / 2);
 
             context.beginPath();
@@ -137,8 +137,8 @@ VNN.Layer = class {
             this.BiasObj.Size = r;
         }
 
-        let x = left;
-        let y = top;
+        let x = centerX - Math.floor(size / 2);
+        let y = topY;
 
         context.beginPath();
         this.Neurons.forEach(function(neuron) {
@@ -147,6 +147,37 @@ VNN.Layer = class {
         });
         context.closePath();
         context.stroke();
+    }
+
+    // 層の設定HTMLを追加
+    AppendLayerSettingHtml(centerX, topY, size, layerIdx, changeEvent) {
+        var layerSettingHtml = '';
+        var divStyle = '';
+        var inputStyle = '';
+        var neuronCount = this.Neurons.length;
+
+        divStyle += 'style="';
+        divStyle += 'position : absolute;';
+        divStyle += 'left : ' + (centerX - Math.floor(size / 2)) + 'px;';
+        divStyle += 'width : ' + size + 'px;';
+        divStyle += 'height : 100%;';
+        divStyle += '"';
+
+        inputStyle += 'style="';
+        inputStyle += 'margin : 10px 5px;';
+        inputStyle += 'width : 60px;';
+        inputStyle += '"';
+
+        layerSettingHtml += '<div id="Layer_' + layerIdx + '" ' + divStyle + '>';
+        layerSettingHtml += '  <input type="number" value="' + neuronCount + '" min="1" max="1000" ' + inputStyle + ' />';
+        layerSettingHtml += '</div>';
+
+        $('#LayerSettingPanel').append(layerSettingHtml);
+
+        var nowVal = this.Neurons.length;
+
+        $('#LayerSettingPanel div#Layer_' + layerIdx + ' input').off('change click keyup');
+        $('#LayerSettingPanel div#Layer_' + layerIdx + ' input').on('change click keyup', changeEvent);
     }
 };
 
