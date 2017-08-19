@@ -1,0 +1,45 @@
+{
+  "name": "visual-neural-network",
+  "version": "0.0.0",
+  "private": true,
+  "license": "see LICENSE file",
+  "description": "Visualize Neural Network.",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.4.3",
+    "express": "^4.4.5",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babelify": "^7.3.0",
+    "browserify": "^14.4.0",
+    "gulp": "^3.9.1",
+    "gulp-webserver": "^0.9.1",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "browserify ./client/scripts/main.js -t [ babelify --presets [ react es2015 ] ] -o ./client/bundle/bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Thought-Nibbler/VisualNeuralNetwork.git"
+  },
+  "keywords": [
+    "Visualization",
+    "AI",
+    "Neural Network"
+  ],
+  "author": "Thought_Nibbler",
+  "bugs": {
+    "url": "https://github.com/Thought-Nibbler/VisualNeuralNetwork/issues"
+  },
+  "homepage": "https://github.com/Thought-Nibbler/VisualNeuralNetwork",
+  "engines": {
+    "node": "6.11.0"
+  }
+}
