@@ -45,26 +45,32 @@ var data = {
     ]
 };
 
-var Box = React.createClass({
+var FigureBox = React.createClass({
     render: function() {
+        var box_width = $('div#FigureArea').width();
+        var box_height = $('div#FigureArea').height();
+        var step_width = box_width / (this.props.data.layers.length + 1);
+
         var layers_dom = this.props.data.layers.map(function(layer, idx) {
+            var cx = step_width * (idx + 1);
+
             console.log(layer);
+
             return (
-                <div key={idx}>{layer.type}</div>
+                <circle key={idx} cx={cx} cy="100" r="16" fill="red" />
             );
         });
+
         return (
-            <div className="box">
-                <h1>Title</h1>
-                <hr />
+            <svg className="figureBox">
                 {layers_dom}
-            </div>
+            </svg>
         );
     }
 });
 
 ReactDOM.render(
-    <Box data={data} />,
-    document.getElementById('Content')
+    <FigureBox data={data} />,
+    document.getElementById('FigureArea')
 );
 
